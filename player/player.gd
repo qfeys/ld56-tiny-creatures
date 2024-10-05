@@ -4,19 +4,21 @@ extends CharacterBody2D
 const SPEED = 200.0
 const JUMP_VELOCITY = -400.0
 
+var is_crawling: bool = false
+
 
 func _physics_process(delta):
 
-
-    # Handle jump.
-    if Input.is_action_just_pressed("ui_accept") and is_on_floor():
-        velocity.y = JUMP_VELOCITY
+    if( Input.is_action_pressed("action_crawl")):
+        is_crawling = true
+    else:
+        is_crawling = false
 
     # Get the input direction and handle the movement/deceleration.
     # As good practice, you should replace UI actions with custom gameplay actions.
-    var direction = Vector2( Input.get_axis("ui_left", "ui_right"), Input.get_axis("ui_up", "ui_down"))
+    var direction = Vector2( Input.get_axis("action_left", "action_right"), Input.get_axis("action_up", "action_down"))
     if direction:
-        velocity = direction.normalized() * SPEED
+        velocity = direction.normalized() * SPEED * ( 0.4 if is_crawling else 1.0)
     else:
         velocity.x = move_toward(velocity.x, 0, SPEED)
         velocity.y = move_toward(velocity.y, 0, SPEED)

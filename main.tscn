@@ -1,9 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://bqsss0cijxkbr"]
+[gd_scene load_steps=4 format=3 uid="uid://bqsss0cijxkbr"]
 
 [ext_resource type="PackedScene" uid="uid://bdskqdoova2l7" path="res://world/world.tscn" id="1_s3kog"]
 [ext_resource type="Script" path="res://camera.gd" id="2_7f3v2"]
 [ext_resource type="PackedScene" uid="uid://c80kevs187m6c" path="res://player/player.tscn" id="2_j8he0"]
-[ext_resource type="Script" path="res://player/player.gd" id="4_iqufb"]
 
 [node name="Main" type="Node"]
 
@@ -26,4 +25,3 @@ player = NodePath("../Player")
 [node name="Player" parent="." instance=ExtResource("2_j8he0")]
 position = Vector2(9, 27)
 scale = Vector2(0.3, 0.3)
-script = ExtResource("4_iqufb")
