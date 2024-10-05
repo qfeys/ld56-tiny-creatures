@@ -30,6 +30,12 @@ var neighbours_to_atlas_coord = {
     [false, false, false, false]: Vector2i(0, 3)  # No corners
 }
 
+func _process(delta):
+    if( Input.is_action_pressed("action_crawl")):
+        displayTilemap.visible = false
+    else:
+        displayTilemap.visible = true
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -46,6 +52,7 @@ func set_display_tile(pos: Vector2i):
     for i in range(0,4):
         var new_pos: Vector2i = pos + NEIGHBOURS[i];
         displayTilemap.set_cell(new_pos, 0, calculate_display_tile(new_pos))
+        print("set display tile at ", new_pos, " to ", calculate_display_tile(new_pos))
 
 func calculate_display_tile(coords: Vector2i) -> Vector2i:
     # Get 4 world tile neighbors
@@ -79,19 +86,19 @@ func calculate_display_tile(coords: Vector2i) -> Vector2i:
         1:
             match type_1:
                 TileType.GRASS:
-                    return neighbours_to_atlas_coord[[false, false, false, false]] + dual_map_grass_forrest_atlas_start
-                TileType.FORREST:
                     return neighbours_to_atlas_coord[[true, true, true, true]] + dual_map_grass_forrest_atlas_start
+                TileType.FORREST:
+                    return neighbours_to_atlas_coord[[false, false, false, false]] + dual_map_grass_forrest_atlas_start
                 TileType.WATER:
                     return neighbours_to_atlas_coord[[true, true, true, true]] + dual_map_grass_water_atlas_start
         2:
             var tileset_offset: Vector2i
             if (type_1 == TileType.GRASS and type_2 == TileType.FORREST) or (type_2 == TileType.GRASS and type_1 == TileType.FORREST):
                 tileset_offset = dual_map_grass_forrest_atlas_start
-                var tl = top_left == TileType.FORREST
-                var tr = top_right == TileType.FORREST
-                var bl = bot_left == TileType.FORREST
-                var br = bot_right == TileType.FORREST
+                var tl = top_left == TileType.GRASS
+                var tr = top_right == TileType.GRASS
+                var bl = bot_left == TileType.GRASS
+                var br = bot_right == TileType.GRASS
                 return neighbours_to_atlas_coord[[tl, tr, bl, br]] + tileset_offset
             elif (type_1 == TileType.GRASS and type_2 == TileType.WATER) or (type_2 == TileType.GRASS and type_1 == TileType.WATER):
                 tileset_offset = dual_map_grass_water_atlas_start

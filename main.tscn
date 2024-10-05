@@ -8,10 +8,10 @@
 [node name="Main" type="Node"]
 
 [node name="world" parent="." instance=ExtResource("1_s3kog")]
-scale = Vector2(2, 2)
 
 [node name="Camera2D" type="Camera2D" parent="." node_paths=PackedStringArray("player")]
 position = Vector2(357, 119)
+zoom = Vector2(3, 3)
 drag_horizontal_enabled = true
 drag_vertical_enabled = true
 drag_left_margin = 0.3

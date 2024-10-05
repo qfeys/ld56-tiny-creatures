@@ -81,7 +81,6 @@ func _enter_move_state() -> void:
     # is 0.0 when distance < 30, 0.8 when distance > 60
     var to_player_fraction = clamp((direction_to_player.length() + 10) / 100.0, 0.0, 0.8)
     move_target = direction_to_player * to_player_fraction + direction_of_player * HOP_TIME
-    print("New move target: ", move_target)
 
 func _enter_join_state() -> void:
     current_state = State.JOIN
