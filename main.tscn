@@ -1,11 +1,29 @@
-[gd_scene load_steps=2 format=3 uid="uid://bqsss0cijxkbr"]
+[gd_scene load_steps=5 format=3 uid="uid://bqsss0cijxkbr"]
 
 [ext_resource type="PackedScene" uid="uid://bdskqdoova2l7" path="res://world/world.tscn" id="1_s3kog"]
+[ext_resource type="Script" path="res://camera.gd" id="2_7f3v2"]
+[ext_resource type="PackedScene" uid="uid://c80kevs187m6c" path="res://player/player.tscn" id="2_j8he0"]
+[ext_resource type="Script" path="res://player/player.gd" id="4_iqufb"]
 
 [node name="Main" type="Node"]
 
 [node name="world" parent="." instance=ExtResource("1_s3kog")]
+scale = Vector2(2, 2)
 
-[node name="Camera2D" type="Camera2D" parent="."]
+[node name="Camera2D" type="Camera2D" parent="." node_paths=PackedStringArray("player")]
 position = Vector2(357, 119)
-zoom = Vector2(2, 2)
+zoom = Vector2(3, 3)
+drag_horizontal_enabled = true
+drag_vertical_enabled = true
+drag_left_margin = 0.3
+drag_top_margin = 0.3
+drag_right_margin = 0.3
+drag_bottom_margin = 0.3
+editor_draw_drag_margin = true
+script = ExtResource("2_7f3v2")
+player = NodePath("../Player")
+
+[node name="Player" parent="." instance=ExtResource("2_j8he0")]
+position = Vector2(9, 27)
+scale = Vector2(0.3, 0.3)
+script = ExtResource("4_iqufb")
