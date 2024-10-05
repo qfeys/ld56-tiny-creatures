@@ -52,7 +52,6 @@ func set_display_tile(pos: Vector2i):
     for i in range(0,4):
         var new_pos: Vector2i = pos + NEIGHBOURS[i];
         displayTilemap.set_cell(new_pos, 0, calculate_display_tile(new_pos))
-        print("set display tile at ", new_pos, " to ", calculate_display_tile(new_pos))
 
 func calculate_display_tile(coords: Vector2i) -> Vector2i:
     # Get 4 world tile neighbors

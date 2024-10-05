@@ -26,4 +26,14 @@ func _physics_process(delta):
         velocity.x = move_toward(velocity.x, 0, ACCELERATION * delta)
         velocity.y = move_toward(velocity.y, 0, ACCELERATION * delta)
 
-    move_and_slide()
+    var collider = move_and_collide(velocity * delta)
+
+    if collider:
+        collider_handle(collider)
+
+func collider_handle(collider: KinematicCollision2D) -> void:
+    var obj = collider.get_collider()
+    
+    if obj.is_class("CharacterBody2D"):
+        var cat: Cat = obj
+        cat.player = self
