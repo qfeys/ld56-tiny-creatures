@@ -12,6 +12,7 @@ y_sort_enabled = true
 
 [node name="Camera2D" type="Camera2D" parent="." node_paths=PackedStringArray("player")]
 position = Vector2(357, 119)
+zoom = Vector2(3, 3)
 drag_horizontal_enabled = true
 drag_vertical_enabled = true
 drag_left_margin = 0.3
@@ -45,15 +46,3 @@ position = Vector2(1124, 863)
 
 [node name="cat7" parent="." instance=ExtResource("4_or6my")]
 position = Vector2(611, 553)
-
-[node name="cat8" parent="." instance=ExtResource("4_or6my")]
-position = Vector2(-180, 82)
-
-[node name="cat9" parent="." instance=ExtResource("4_or6my")]
-position = Vector2(-62, 90)
-
-[node name="cat10" parent="." instance=ExtResource("4_or6my")]
-position = Vector2(130, -124)
-
-[node name="cat11" parent="." instance=ExtResource("4_or6my")]
-position = Vector2(-112, -57)

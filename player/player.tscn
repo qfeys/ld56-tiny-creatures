@@ -1,29 +1,36 @@
-[gd_scene load_steps=5 format=3 uid="uid://c80kevs187m6c"]
+[gd_scene load_steps=6 format=3 uid="uid://c80kevs187m6c"]
 
 [ext_resource type="Script" path="res://player/player.gd" id="1_1p7t5"]
-
-[sub_resource type="Gradient" id="Gradient_yg1mt"]
-offsets = PackedFloat32Array(0.538961, 0.753247)
-colors = PackedColorArray(0.580392, 0.298039, 0.286275, 1, 0, 0, 0, 0)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_vrc4g"]
-gradient = SubResource("Gradient_yg1mt")
-width = 32
-fill = 1
-fill_from = Vector2(0.5, 0.5)
-fill_to = Vector2(1, 1)
+[ext_resource type="Texture2D" uid="uid://cbxql0frdqv5n" path="res://player/player_spritesheet.png" id="2_pgi5h"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_nh2pr"]
 radius = 16.0
+
+[sub_resource type="Gradient" id="Gradient_go5wj"]
+colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_caf8b"]
+gradient = SubResource("Gradient_go5wj")
+width = 32
+height = 32
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.5, 0)
 
 [node name="Player" type="CharacterBody2D"]
 position = Vector2(100, 100)
 motion_mode = 1
 script = ExtResource("1_1p7t5")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(0, -11.525)
-texture = SubResource("GradientTexture2D_vrc4g")
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_nh2pr")
+
+[node name="ground_shadow" type="Sprite2D" parent="."]
+position = Vector2(0, 5.96)
+texture = SubResource("GradientTexture2D_caf8b")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_pgi5h")
+offset = Vector2(0, -20)
+region_enabled = true
+region_rect = Rect2(0, 0, 32, 64)
