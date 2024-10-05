@@ -1,17 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://dh60fono75mm8"]
+[gd_scene load_steps=6 format=3 uid="uid://dh60fono75mm8"]
 
 [ext_resource type="Script" path="res://cat/cat.gd" id="1_y7ae7"]
-
-[sub_resource type="Gradient" id="Gradient_ivcln"]
-offsets = PackedFloat32Array(0.487013, 0.805195)
-colors = PackedColorArray(0.258824, 0.717647, 0.298039, 1, 0.258824, 0.717647, 0.298039, 0)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_hngmq"]
-gradient = SubResource("Gradient_ivcln")
-width = 16
-height = 16
-fill = 1
-fill_from = Vector2(0.5, 0.5)
+[ext_resource type="Texture2D" uid="uid://c150rtt5rvgbs" path="res://cat/cat_spritesheet_base.png" id="2_qby6i"]
+[ext_resource type="Texture2D" uid="uid://dw1t0eing8oc" path="res://cat/cat_spritesheet_highlights.png" id="3_n6smy"]
+[ext_resource type="Script" path="res://cat/recolor.gd" id="3_s37f2"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_u3y08"]
 radius = 7.0
@@ -20,8 +12,18 @@ radius = 7.0
 motion_mode = 1
 script = ExtResource("1_y7ae7")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-texture = SubResource("GradientTexture2D_hngmq")
+[node name="sprite_base" type="Sprite2D" parent="."]
+texture = ExtResource("2_qby6i")
+region_enabled = true
+region_rect = Rect2(0, 0, 16, 16)
+script = ExtResource("3_s37f2")
+red = Color(0.84, 0.322, 0, 1)
+
+[node name="sprite_accents" type="Sprite2D" parent="."]
+texture = ExtResource("3_n6smy")
+region_enabled = true
+region_rect = Rect2(0, 0, 16, 16)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_u3y08")
+debug_color = Color(0.428362, 0.860487, 0, 0.0941176)

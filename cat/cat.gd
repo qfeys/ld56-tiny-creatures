@@ -98,13 +98,10 @@ func _join_state(delta: float) -> void:
         # Complete botch fallback
         if sit_timer <= 0.0:
             sit_timer = 4.0
-            print("Start botch fallback")
         else:
             sit_timer -= 1.0
-            print("Botch fallback: ", sit_timer)
             if sit_timer <= 0.0:
                 _enter_sit_state()
-                print("End botch fallback")
 
 # Transition functions
 func _enter_sit_state() -> void:
@@ -123,7 +120,8 @@ func _enter_move_state() -> void:
         var to_player_fraction = clamp((direction_to_player.length() - join_point_radius) / 100.0, 0.0, 0.8)
         move_target = direction_to_player * to_player_fraction + direction_of_player * HOP_TIME
     else:
-        move_target = start_point + Vector2(randf_range(-join_point_radius, join_point_radius), randf_range(-join_point_radius, join_point_radius))
+        var pos_target = start_point + Vector2(randf_range(-join_point_radius, join_point_radius), randf_range(-join_point_radius, join_point_radius))
+        move_target = pos_target - position
 
 func _enter_join_state() -> void:
     current_state = State.JOIN

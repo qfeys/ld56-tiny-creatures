@@ -5,13 +5,13 @@
 [ext_resource type="PackedScene" uid="uid://c80kevs187m6c" path="res://player/player.tscn" id="2_j8he0"]
 [ext_resource type="PackedScene" uid="uid://dh60fono75mm8" path="res://cat/cat.tscn" id="4_or6my"]
 
-[node name="Main" type="Node"]
+[node name="Main" type="Node2D"]
+y_sort_enabled = true
 
 [node name="world" parent="." instance=ExtResource("1_s3kog")]
 
 [node name="Camera2D" type="Camera2D" parent="." node_paths=PackedStringArray("player")]
 position = Vector2(357, 119)
-zoom = Vector2(3, 3)
 drag_horizontal_enabled = true
 drag_vertical_enabled = true
 drag_left_margin = 0.3
@@ -24,7 +24,7 @@ player = NodePath("../Player")
 
 [node name="Player" parent="." instance=ExtResource("2_j8he0")]
 position = Vector2(9, 27)
-scale = Vector2(0.3, 0.3)
+scale = Vector2(0.5, 0.5)
 
 [node name="cat" parent="." instance=ExtResource("4_or6my")]
 
@@ -45,3 +45,15 @@ position = Vector2(1124, 863)
 
 [node name="cat7" parent="." instance=ExtResource("4_or6my")]
 position = Vector2(611, 553)
+
+[node name="cat8" parent="." instance=ExtResource("4_or6my")]
+position = Vector2(-180, 82)
+
+[node name="cat9" parent="." instance=ExtResource("4_or6my")]
+position = Vector2(-62, 90)
+
+[node name="cat10" parent="." instance=ExtResource("4_or6my")]
+position = Vector2(130, -124)
+
+[node name="cat11" parent="." instance=ExtResource("4_or6my")]
+position = Vector2(-112, -57)
