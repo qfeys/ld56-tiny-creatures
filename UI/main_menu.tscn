@@ -70,7 +70,7 @@ horizontal_alignment = 1
 
 [node name="Label4" type="Label" parent="CenterContainer/PanelContainer/VBoxContainer"]
 layout_mode = 2
-text = "Credits: Controls: wsad + ctrl + space"
+text = "Made by Quinten Feys"
 label_settings = SubResource("LabelSettings_aphf6")
 horizontal_alignment = 1
 
@@ -84,7 +84,7 @@ size_flags_horizontal = 2
 size_flags_vertical = 0
 focus_mode = 0
 theme = ExtResource("1_1uo5v")
-text = "Controls"
+text = "Tutorial"
 
 [node name="Button2" type="Button" parent="CenterContainer/PanelContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
@@ -102,5 +102,6 @@ text = "Quit"
 [node name="world" parent="." instance=ExtResource("5_bnhlf")]
 position = Vector2(-1200, -300)
 
+[connection signal="button_up" from="CenterContainer/PanelContainer/VBoxContainer/HBoxContainer/Button" to="." method="start"]
 [connection signal="button_up" from="CenterContainer/PanelContainer/VBoxContainer/HBoxContainer/Button2" to="." method="start"]
 [connection signal="button_up" from="CenterContainer/PanelContainer/VBoxContainer/HBoxContainer/Button3" to="." method="quit"]

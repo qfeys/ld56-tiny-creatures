@@ -14,7 +14,7 @@ y_sort_enabled = true
 
 [node name="Camera2D" type="Camera2D" parent="." node_paths=PackedStringArray("player")]
 position = Vector2(357, 119)
-zoom = Vector2(3, 3)
+zoom = Vector2(2.8, 2.8)
 drag_horizontal_enabled = true
 drag_vertical_enabled = true
 drag_left_margin = 0.3
@@ -26,10 +26,11 @@ script = ExtResource("2_7f3v2")
 player = NodePath("../player")
 
 [node name="player" parent="." instance=ExtResource("2_j8he0")]
-position = Vector2(9, 27)
+position = Vector2(-98, 77)
 scale = Vector2(0.5, 0.5)
 
 [node name="cat" parent="." instance=ExtResource("4_or6my")]
+position = Vector2(82, -11)
 
 [node name="cat2" parent="." instance=ExtResource("4_or6my")]
 position = Vector2(402, 106)
@@ -49,8 +50,38 @@ position = Vector2(1124, 863)
 [node name="cat7" parent="." instance=ExtResource("4_or6my")]
 position = Vector2(611, 553)
 
+[node name="cat8" parent="." instance=ExtResource("4_or6my")]
+position = Vector2(354, 1982)
+
+[node name="cat9" parent="." instance=ExtResource("4_or6my")]
+position = Vector2(1199, 2438)
+
+[node name="cat10" parent="." instance=ExtResource("4_or6my")]
+position = Vector2(1798, 1583)
+
+[node name="cat11" parent="." instance=ExtResource("4_or6my")]
+position = Vector2(1798, 2306)
+
+[node name="cat12" parent="." instance=ExtResource("4_or6my")]
+position = Vector2(2432, 1946)
+
+[node name="cat13" parent="." instance=ExtResource("4_or6my")]
+position = Vector2(2806, 1607)
+
+[node name="cat14" parent="." instance=ExtResource("4_or6my")]
+position = Vector2(3312, 2124)
+
+[node name="cat15" parent="." instance=ExtResource("4_or6my")]
+position = Vector2(3975, 2010)
+
+[node name="cat16" parent="." instance=ExtResource("4_or6my")]
+position = Vector2(3508, 1778)
+
+[node name="cat17" parent="." instance=ExtResource("4_or6my")]
+position = Vector2(2724, 263)
+
 [node name="gate" parent="." instance=ExtResource("5_v03ap")]
-position = Vector2(217, -196)
+position = Vector2(3616, 448)
 
 [node name="tutorial" parent="." node_paths=PackedStringArray("camera") instance=ExtResource("6_0cx5w")]
 camera = NodePath("../Camera2D")
