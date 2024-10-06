@@ -1,16 +1,26 @@
-[gd_scene load_steps=6 format=3 uid="uid://dh60fono75mm8"]
+[gd_scene load_steps=9 format=3 uid="uid://dh60fono75mm8"]
 
 [ext_resource type="Script" path="res://cat/cat.gd" id="1_y7ae7"]
 [ext_resource type="Texture2D" uid="uid://c150rtt5rvgbs" path="res://cat/cat_spritesheet_base.png" id="2_qby6i"]
 [ext_resource type="Texture2D" uid="uid://dw1t0eing8oc" path="res://cat/cat_spritesheet_highlights.png" id="3_n6smy"]
 [ext_resource type="Script" path="res://cat/recolor.gd" id="3_s37f2"]
+[ext_resource type="Theme" uid="uid://bsupviace6ypy" path="res://ui_theme.tres" id="5_n73wd"]
+[ext_resource type="FontFile" uid="uid://c83js3twejqpq" path="res://UI/GreatVibes-Regular.ttf" id="6_17qga"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_u3y08"]
 radius = 7.0
 
-[node name="cat" type="CharacterBody2D"]
+[sub_resource type="LabelSettings" id="LabelSettings_ugw4w"]
+line_spacing = 0.0
+font = ExtResource("6_17qga")
+font_size = 10
+shadow_color = Color(0, 0, 0, 0.282353)
+
+[node name="cat" type="CharacterBody2D" node_paths=PackedStringArray("agitation_bar", "warning_lable")]
 motion_mode = 1
 script = ExtResource("1_y7ae7")
+agitation_bar = NodePath("Control/ProgressBar")
+warning_lable = NodePath("Control/CenterContainer/Label")
 
 [node name="sprite_base" type="Sprite2D" parent="."]
 texture = ExtResource("2_qby6i")
@@ -27,3 +37,32 @@ region_rect = Rect2(0, 0, 16, 16)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_u3y08")
 debug_color = Color(0.428362, 0.860487, 0, 0.0941176)
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ProgressBar" type="ProgressBar" parent="Control"]
+custom_minimum_size = Vector2(16, 2)
+layout_mode = 0
+offset_left = -7.775
+offset_top = -12.385
+offset_right = 8.225
+offset_bottom = -10.385
+theme = ExtResource("5_n73wd")
+value = 50.0
+show_percentage = false
+
+[node name="CenterContainer" type="CenterContainer" parent="Control"]
+layout_mode = 0
+offset_top = -17.0
+offset_right = 20.0
+offset_bottom = -3.0
+scale = Vector2(0.5, 0.5)
+
+[node name="Label" type="Label" parent="Control/CenterContainer"]
+layout_mode = 2
+text = "S"
+label_settings = SubResource("LabelSettings_ugw4w")
