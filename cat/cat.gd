@@ -2,15 +2,16 @@ extends CharacterBody2D
 class_name Cat
 
 const SPEED = 350.0
+const CRAWL_SPEED = 100.0
 const JOIN_DISTANCE_THRESHOLD = 100.0  # Distance threshold for joining
-const join_point_radius: float = 50.0
+const JOIN_POINT_RADIUS: float = 50.0
 const SIT_TIME = 3.0  # Time to sit before going back to sit state
 const HOP_TIME = 0.6  # Time to calculate hop target
 
 @export var player: CharacterBody2D
 
 # Enum for states
-enum State { SIT, MOVE, JOIN }
+enum State { SIT, MOVE, JOIN, CRAWL }
 
 # State and timer variables
 var current_state: State = State.SIT
@@ -34,6 +35,8 @@ func _physics_process(delta):
             _move_state(delta)
         State.JOIN:
             _join_state(delta)
+        State.CRAWL:
+            _crawl_state(delta)
 
 # SIT state logic
 func _sit_state(delta: float) -> void:
@@ -51,6 +54,9 @@ func _sit_state(delta: float) -> void:
 
 # MOVE state logic
 func _move_state(delta: float) -> void:
+    if player and player.is_crawling:
+        _enter_crawl_state()
+        return
     velocity = move_target.normalized() * SPEED
     move_target -= velocity * delta
 
@@ -103,6 +109,19 @@ func _join_state(delta: float) -> void:
             if sit_timer <= 0.0:
                 _enter_sit_state()
 
+func _crawl_state(delta: float) -> void:
+    if player.is_crawling == false:
+        _enter_move_state()
+        return
+    var player_distance = position.distance_to(player.position)
+    if player_distance < JOIN_POINT_RADIUS:
+        velocity = player.velocity.normalized() * CRAWL_SPEED
+    elif player_distance < JOIN_DISTANCE_THRESHOLD:
+        velocity = (player.position - position).normalized() * CRAWL_SPEED
+    else:
+        _enter_join_state()
+    move_and_collide(velocity * delta)
+
 # Transition functions
 func _enter_sit_state() -> void:
     current_state = State.SIT
@@ -117,12 +136,20 @@ func _enter_move_state() -> void:
         var direction_to_player = (player.position - position)
         var direction_of_player = player.velocity
         # is 0.0 when distance < 30, 0.8 when distance > 60
-        var to_player_fraction = clamp((direction_to_player.length() - join_point_radius) / 100.0, 0.0, 0.8)
+        var to_player_fraction = clamp((direction_to_player.length() - JOIN_POINT_RADIUS) / 100.0, 0.0, 0.8)
         move_target = direction_to_player * to_player_fraction + direction_of_player * HOP_TIME
     else:
-        var pos_target = start_point + Vector2(randf_range(-join_point_radius, join_point_radius), randf_range(-join_point_radius, join_point_radius))
+        var pos_target = start_point + Vector2(randf_range(-JOIN_POINT_RADIUS, JOIN_POINT_RADIUS), randf_range(-JOIN_POINT_RADIUS, JOIN_POINT_RADIUS))
         move_target = pos_target - position
 
 func _enter_join_state() -> void:
     current_state = State.JOIN
-    join_target = player.position + Vector2(randf_range(-join_point_radius, join_point_radius), randf_range(-join_point_radius, join_point_radius))
+    join_target = player.position + Vector2(randf_range(-JOIN_POINT_RADIUS, JOIN_POINT_RADIUS), randf_range(-JOIN_POINT_RADIUS, JOIN_POINT_RADIUS))
+
+func _enter_crawl_state() -> void:
+    current_state = State.CRAWL
+    velocity = Vector2.ZERO
+    sit_timer = 3.0
+    if not player:
+        _enter_sit_state()
+        printerr("Cat has no player to crawl to")

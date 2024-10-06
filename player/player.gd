@@ -4,6 +4,7 @@ extends CharacterBody2D
 @export var ground_shadow: Sprite2D
 
 const SPEED = 200.0
+const CRAWL_SPEED = 80.0
 const JUMP_VELOCITY = 200.0
 const ACCELERATION = 1000.0
 const JUMP_TIME = 0.5
@@ -35,8 +36,8 @@ func _physics_process(delta):
     var direction = Vector2( Input.get_axis("action_left", "action_right"), Input.get_axis("action_up", "action_down")).normalized()
     if direction:
         #velocity = direction * SPEED * ( 0.4 if is_crawling else 1.0)
-        velocity.x = move_toward(velocity.x, direction.x * SPEED * ( 0.4 if is_crawling else 1.0), ACCELERATION * delta)
-        velocity.y = move_toward(velocity.y, direction.y * SPEED * ( 0.4 if is_crawling else 1.0), ACCELERATION * delta)
+        velocity.x = move_toward(velocity.x, direction.x * (CRAWL_SPEED if is_crawling else SPEED), ACCELERATION * delta)
+        velocity.y = move_toward(velocity.y, direction.y * (CRAWL_SPEED if is_crawling else SPEED), ACCELERATION * delta)
     else:
         velocity.x = move_toward(velocity.x, 0, ACCELERATION * delta)
         velocity.y = move_toward(velocity.y, 0, ACCELERATION * delta)

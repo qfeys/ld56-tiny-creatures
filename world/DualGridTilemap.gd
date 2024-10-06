@@ -30,11 +30,11 @@ var neighbours_to_atlas_coord = {
     [false, false, false, false]: Vector2i(0, 3)  # No corners
 }
 
-func _process(delta):
-    if( Input.is_action_pressed("action_crawl")):
-        displayTilemap.visible = false
-    else:
-        displayTilemap.visible = true
+# func _process(delta):
+#     if( Input.is_action_pressed("action_crawl")):
+#         displayTilemap.visible = false
+#     else:
+#         displayTilemap.visible = true
 
 
 # Called when the node enters the scene tree for the first time.
