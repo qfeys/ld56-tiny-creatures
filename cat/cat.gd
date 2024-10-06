@@ -11,6 +11,7 @@ const HOP_TIME = 0.6  # Time to calculate hop target
 @export var player: CharacterBody2D
 @export var agitation_bar: ProgressBar
 @export var warning_lable: Label
+@export var audio_manager: Node2D
 
 # Enum for states
 enum State { SIT, MOVE, JOIN, CRAWL, ANXIOUS, LEAVE }
@@ -123,6 +124,7 @@ func _join_state(delta: float) -> void:
     if collision:
         match collision.get_collider().get_class():
             "TileMapLayer":
+                get_node("/root/Main/tutorial").call_deferred("open_agitation", self)
                 agitation += 5
                 var normal = collision.get_normal()
                 velocity = velocity.bounce(normal)
@@ -149,10 +151,11 @@ func _join_state(delta: float) -> void:
                         _enter_sit_state()
             
             "CharacterBody2D":
-                if collision.get_collider().has_method("get_slashed"):
+                if agitation > 10 and collision.get_collider().has_method("get_slashed"):
                     collision.get_collider().get_slashed(agitation / 10.0)
                     was_in_attack_timer = ATTACK_COOLDOWN
                     _enter_sit_state()
+                    get_node("/root/Main/tutorial").open_fights(self)
                 else: # means it's the player
                     agitation -= 10
                     _enter_sit_state()
@@ -201,6 +204,7 @@ func _enter_sit_state() -> void:
     velocity = Vector2.ZERO
     if sit_timer <= 0.0:
         sit_timer = SIT_TIME
+    audio_manager.play_random()
 
 func _enter_move_state() -> void:
     current_state = State.MOVE
@@ -228,6 +232,7 @@ func _enter_crawl_state() -> void:
         printerr("Cat has no player to crawl to")
 
 func _enter_anxious_state() -> void:
+    get_node("/root/Main/tutorial").call_deferred("open_anxiety", self)
     current_state = State.ANXIOUS
     velocity = Vector2.ZERO
     sit_timer = 3.0
@@ -242,3 +247,4 @@ func get_slashed(damage: float):
     agitation += damage
     was_in_attack_timer = ATTACK_COOLDOWN
     _enter_move_state()
+    audio_manager.play_fight()

@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://dh60fono75mm8"]
+[gd_scene load_steps=16 format=3 uid="uid://dh60fono75mm8"]
 
 [ext_resource type="Script" path="res://cat/cat.gd" id="1_y7ae7"]
 [ext_resource type="Texture2D" uid="uid://c150rtt5rvgbs" path="res://cat/cat_spritesheet_base.png" id="2_qby6i"]
@@ -6,6 +6,13 @@
 [ext_resource type="Script" path="res://cat/recolor.gd" id="3_s37f2"]
 [ext_resource type="Theme" uid="uid://bsupviace6ypy" path="res://UI/ui_theme.tres" id="5_n73wd"]
 [ext_resource type="FontFile" uid="uid://c83js3twejqpq" path="res://UI/GreatVibes-Regular.ttf" id="6_17qga"]
+[ext_resource type="Script" path="res://cat/sound_manager.gd" id="7_i4mf2"]
+[ext_resource type="AudioStream" uid="uid://cggjxqeuwp428" path="res://sound/cat_rand_1.wav" id="8_q2beh"]
+[ext_resource type="AudioStream" uid="uid://denn1o28bvq5" path="res://sound/cat_rand_2.wav" id="9_bn7ah"]
+[ext_resource type="AudioStream" uid="uid://dmjgq4f8ajxak" path="res://sound/cat_rand_3.wav" id="10_2eb7f"]
+[ext_resource type="AudioStream" uid="uid://cpk3y18y0b4du" path="res://sound/cat_rand_4.wav" id="11_r558y"]
+[ext_resource type="AudioStream" uid="uid://d280npcpey1x4" path="res://sound/cat_fight.wav" id="12_s3cei"]
+[ext_resource type="AudioStream" uid="uid://c42sflfu7nx2x" path="res://sound/cat_fight_2.wav" id="13_n2vwq"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_u3y08"]
 radius = 7.0
@@ -13,14 +20,15 @@ radius = 7.0
 [sub_resource type="LabelSettings" id="LabelSettings_ugw4w"]
 line_spacing = 0.0
 font = ExtResource("6_17qga")
-font_size = 10
+font_color = Color(1, 0.86, 0.904333, 1)
 shadow_color = Color(0, 0, 0, 0.282353)
 
-[node name="cat" type="CharacterBody2D" node_paths=PackedStringArray("agitation_bar", "warning_lable") groups=["cat"]]
+[node name="cat" type="CharacterBody2D" node_paths=PackedStringArray("agitation_bar", "warning_lable", "audio_manager") groups=["cat"]]
 motion_mode = 1
 script = ExtResource("1_y7ae7")
 agitation_bar = NodePath("Control/ProgressBar")
 warning_lable = NodePath("Control/CenterContainer/Label")
+audio_manager = NodePath("sound_manager")
 
 [node name="sprite_base" type="Sprite2D" parent="."]
 texture = ExtResource("2_qby6i")
@@ -66,3 +74,36 @@ scale = Vector2(0.5, 0.5)
 layout_mode = 2
 text = "S"
 label_settings = SubResource("LabelSettings_ugw4w")
+
+[node name="sound_manager" type="Node2D" parent="." node_paths=PackedStringArray("rand_1", "rand_2", "rand_3", "rand_4", "fight_1", "fight_2")]
+script = ExtResource("7_i4mf2")
+rand_1 = NodePath("cat_rand_1")
+rand_2 = NodePath("cat_rand_2")
+rand_3 = NodePath("cat_rand_3")
+rand_4 = NodePath("cat_rand_4")
+fight_1 = NodePath("cat_fight")
+fight_2 = NodePath("cat_fight2")
+
+[node name="cat_rand_1" type="AudioStreamPlayer2D" parent="sound_manager"]
+stream = ExtResource("8_q2beh")
+max_distance = 192.0
+
+[node name="cat_rand_2" type="AudioStreamPlayer2D" parent="sound_manager"]
+stream = ExtResource("9_bn7ah")
+max_distance = 192.0
+
+[node name="cat_rand_3" type="AudioStreamPlayer2D" parent="sound_manager"]
+stream = ExtResource("10_2eb7f")
+max_distance = 192.0
+
+[node name="cat_rand_4" type="AudioStreamPlayer2D" parent="sound_manager"]
+stream = ExtResource("11_r558y")
+max_distance = 192.0
+
+[node name="cat_fight" type="AudioStreamPlayer2D" parent="sound_manager"]
+stream = ExtResource("12_s3cei")
+max_distance = 256.0
+
+[node name="cat_fight2" type="AudioStreamPlayer2D" parent="sound_manager"]
+stream = ExtResource("13_n2vwq")
+max_distance = 256.0

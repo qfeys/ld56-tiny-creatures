@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://bqsss0cijxkbr"]
+[gd_scene load_steps=7 format=3 uid="uid://bqsss0cijxkbr"]
 
 [ext_resource type="PackedScene" uid="uid://bdskqdoova2l7" path="res://world/world.tscn" id="1_s3kog"]
 [ext_resource type="Script" path="res://camera.gd" id="2_7f3v2"]
 [ext_resource type="PackedScene" uid="uid://c80kevs187m6c" path="res://player/player.tscn" id="2_j8he0"]
 [ext_resource type="PackedScene" uid="uid://dh60fono75mm8" path="res://cat/cat.tscn" id="4_or6my"]
 [ext_resource type="PackedScene" uid="uid://b2y3c32ga11et" path="res://gate/gate.tscn" id="5_v03ap"]
+[ext_resource type="PackedScene" uid="uid://b1vy2yjnyfvg6" path="res://tutorial.tscn" id="6_0cx5w"]
 
 [node name="Main" type="Node2D"]
 y_sort_enabled = true
@@ -50,3 +51,6 @@ position = Vector2(611, 553)
 
 [node name="gate" parent="." instance=ExtResource("5_v03ap")]
 position = Vector2(217, -196)
+
+[node name="tutorial" parent="." node_paths=PackedStringArray("camera") instance=ExtResource("6_0cx5w")]
+camera = NodePath("../Camera2D")

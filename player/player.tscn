@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://c80kevs187m6c"]
+[gd_scene load_steps=7 format=3 uid="uid://c80kevs187m6c"]
 
 [ext_resource type="Script" path="res://player/player.gd" id="1_1p7t5"]
 [ext_resource type="Texture2D" uid="uid://cbxql0frdqv5n" path="res://player/player_spritesheet.png" id="2_pgi5h"]
+[ext_resource type="AudioStream" uid="uid://ff28utlfw63b" path="res://sound/footstep.wav" id="3_pnorj"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_nh2pr"]
 radius = 16.0
@@ -17,7 +18,7 @@ fill = 1
 fill_from = Vector2(0.5, 0.5)
 fill_to = Vector2(0.5, 0)
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("main_sprite", "ground_shadow")]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("main_sprite", "ground_shadow", "footstep_sound")]
 position = Vector2(100, 100)
 collision_layer = 5
 collision_mask = 5
@@ -25,6 +26,7 @@ motion_mode = 1
 script = ExtResource("1_1p7t5")
 main_sprite = NodePath("Sprite2D")
 ground_shadow = NodePath("ground_shadow")
+footstep_sound = NodePath("AudioStreamPlayer")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_nh2pr")
@@ -38,3 +40,6 @@ texture = ExtResource("2_pgi5h")
 offset = Vector2(0, -20)
 region_enabled = true
 region_rect = Rect2(0, 0, 32, 64)
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_pnorj")

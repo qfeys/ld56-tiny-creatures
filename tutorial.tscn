@@ -1,0 +1,200 @@
+[gd_scene load_steps=6 format=3 uid="uid://b1vy2yjnyfvg6"]
+
+[ext_resource type="Script" path="res://tutorial.gd" id="1_fg5au"]
+[ext_resource type="Theme" uid="uid://bsupviace6ypy" path="res://UI/ui_theme.tres" id="1_fw81h"]
+[ext_resource type="FontFile" uid="uid://c83js3twejqpq" path="res://UI/GreatVibes-Regular.ttf" id="2_pqe65"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_6qo0w"]
+font = ExtResource("2_pqe65")
+font_size = 30
+font_color = Color(1, 0.966, 0.83, 1)
+shadow_color = Color(0, 0, 0, 0.623529)
+
+[sub_resource type="LabelSettings" id="LabelSettings_6tepk"]
+line_spacing = 0.0
+font = ExtResource("2_pqe65")
+font_size = 20
+font_color = Color(1, 0.966, 0.83, 1)
+shadow_color = Color(0, 0, 0, 0.623529)
+
+[node name="tutorial" type="Node2D" node_paths=PackedStringArray("movement", "abilities", "agitation", "fights", "anxiety")]
+script = ExtResource("1_fg5au")
+movement = NodePath("CanvasLayer/movement")
+abilities = NodePath("CanvasLayer/abilities")
+agitation = NodePath("CanvasLayer/agitation")
+fights = NodePath("CanvasLayer/fights")
+anxiety = NodePath("CanvasLayer/Anxiety")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="movement" type="PanelContainer" parent="CanvasLayer"]
+visible = false
+custom_minimum_size = Vector2(200, 300)
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 100.0
+offset_top = -150.0
+offset_right = 300.0
+offset_bottom = 150.0
+grow_vertical = 2
+theme = ExtResource("1_fw81h")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/movement"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/movement/VBoxContainer"]
+layout_mode = 2
+text = "Movement"
+label_settings = SubResource("LabelSettings_6qo0w")
+
+[node name="Label2" type="Label" parent="CanvasLayer/movement/VBoxContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+text = "Look, a lonly cat!
+Move towards her with wasd or the arrow keys. Once you touch him, he will follow."
+label_settings = SubResource("LabelSettings_6tepk")
+autowrap_mode = 3
+
+[node name="Button" type="Button" parent="CanvasLayer/movement/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 10
+text = "Okay"
+
+[node name="abilities" type="PanelContainer" parent="CanvasLayer"]
+visible = false
+custom_minimum_size = Vector2(200, 300)
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 100.0
+offset_top = -150.0
+offset_right = 300.0
+offset_bottom = 150.0
+grow_vertical = 2
+theme = ExtResource("1_fw81h")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/abilities"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/abilities/VBoxContainer"]
+layout_mode = 2
+text = "Abilities"
+label_settings = SubResource("LabelSettings_6qo0w")
+
+[node name="Label2" type="Label" parent="CanvasLayer/abilities/VBoxContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+text = "Make sure to press Ctrl and Space once in a while. It might prove usefull."
+label_settings = SubResource("LabelSettings_6tepk")
+autowrap_mode = 3
+
+[node name="Button" type="Button" parent="CanvasLayer/abilities/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 10
+text = "Okay"
+
+[node name="agitation" type="PanelContainer" parent="CanvasLayer"]
+visible = false
+custom_minimum_size = Vector2(200, 300)
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 100.0
+offset_top = -150.0
+offset_right = 300.0
+offset_bottom = 150.0
+grow_vertical = 2
+theme = ExtResource("1_fw81h")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/agitation"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/agitation/VBoxContainer"]
+layout_mode = 2
+text = "Agitation"
+label_settings = SubResource("LabelSettings_6qo0w")
+
+[node name="Label2" type="Label" parent="CanvasLayer/agitation/VBoxContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+text = "Cats are not always good at finding their way, but if they get stuck, they get agitatated. Make sure to keep an eye on the red meter."
+label_settings = SubResource("LabelSettings_6tepk")
+autowrap_mode = 3
+
+[node name="Button" type="Button" parent="CanvasLayer/agitation/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 10
+text = "Okay"
+
+[node name="fights" type="PanelContainer" parent="CanvasLayer"]
+visible = false
+custom_minimum_size = Vector2(200, 300)
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 100.0
+offset_top = -150.0
+offset_right = 300.0
+offset_bottom = 150.0
+grow_vertical = 2
+theme = ExtResource("1_fw81h")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/fights"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/fights/VBoxContainer"]
+layout_mode = 2
+text = "Fights"
+label_settings = SubResource("LabelSettings_6qo0w")
+
+[node name="Label2" type="Label" parent="CanvasLayer/fights/VBoxContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+text = "If cats are agitated and they run into each other, they can get into fights. Thsi does not make them any calmer."
+label_settings = SubResource("LabelSettings_6tepk")
+autowrap_mode = 3
+
+[node name="Button" type="Button" parent="CanvasLayer/fights/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 10
+text = "Okay"
+
+[node name="Anxiety" type="PanelContainer" parent="CanvasLayer"]
+visible = false
+custom_minimum_size = Vector2(200, 300)
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 100.0
+offset_top = -150.0
+offset_right = 300.0
+offset_bottom = 150.0
+grow_vertical = 2
+theme = ExtResource("1_fw81h")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Anxiety"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/Anxiety/VBoxContainer"]
+layout_mode = 2
+text = "Anxiety"
+label_settings = SubResource("LabelSettings_6qo0w")
+
+[node name="Label2" type="Label" parent="CanvasLayer/Anxiety/VBoxContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+text = "When cats get too agitated, they get anxious. Go back to them and crouch, or they might leave."
+label_settings = SubResource("LabelSettings_6tepk")
+autowrap_mode = 3
+
+[node name="Button" type="Button" parent="CanvasLayer/Anxiety/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 10
+text = "Okay"
+
+[connection signal="button_up" from="CanvasLayer/movement/VBoxContainer/Button" to="." method="close_all"]
+[connection signal="button_up" from="CanvasLayer/abilities/VBoxContainer/Button" to="." method="close_all"]
+[connection signal="button_up" from="CanvasLayer/agitation/VBoxContainer/Button" to="." method="close_all"]
+[connection signal="button_up" from="CanvasLayer/fights/VBoxContainer/Button" to="." method="close_all"]
+[connection signal="button_up" from="CanvasLayer/Anxiety/VBoxContainer/Button" to="." method="close_all"]
