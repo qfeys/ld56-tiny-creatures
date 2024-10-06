@@ -85,11 +85,20 @@ func calculate_display_tile(coords: Vector2i) -> Vector2i:
         1:
             match type_1:
                 TileType.GRASS:
-                    return neighbours_to_atlas_coord[[true, true, true, true]] + dual_map_grass_forrest_atlas_start
+                    if randf() > 0.5:
+                        return neighbours_to_atlas_coord[[true, true, true, true]] + dual_map_grass_forrest_atlas_start
+                    else:
+                        return neighbours_to_atlas_coord[[false, false, false, false]] + dual_map_grass_water_atlas_start
                 TileType.FORREST:
-                    return neighbours_to_atlas_coord[[false, false, false, false]] + dual_map_grass_forrest_atlas_start
+                    if randf() > 0.5:
+                        return neighbours_to_atlas_coord[[false, false, false, false]] + dual_map_grass_forrest_atlas_start
+                    else:
+                        return neighbours_to_atlas_coord[[false, false, false, false]] + dual_map_forrest_water_atlas_start
                 TileType.WATER:
-                    return neighbours_to_atlas_coord[[true, true, true, true]] + dual_map_grass_water_atlas_start
+                    if randf() > 0.5:
+                        return neighbours_to_atlas_coord[[true, true, true, true]] + dual_map_grass_water_atlas_start
+                    else:
+                        return neighbours_to_atlas_coord[[true, true, true, true]] + dual_map_forrest_water_atlas_start
         2:
             var tileset_offset: Vector2i
             if (type_1 == TileType.GRASS and type_2 == TileType.FORREST) or (type_2 == TileType.GRASS and type_1 == TileType.FORREST):

@@ -1,0 +1,9 @@
+[gd_resource type="LabelSettings" load_steps=2 format=3 uid="uid://cgt270gfn05ur"]
+
+[ext_resource type="FontFile" uid="uid://c83js3twejqpq" path="res://UI/GreatVibes-Regular.ttf" id="1_75bmw"]
+
+[resource]
+font = ExtResource("1_75bmw")
+font_size = 80
+font_color = Color(1, 0.966, 0.83, 1)
+shadow_color = Color(0, 0, 0, 0.623529)

@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://c150rtt5rvgbs" path="res://cat/cat_spritesheet_base.png" id="2_qby6i"]
 [ext_resource type="Texture2D" uid="uid://dw1t0eing8oc" path="res://cat/cat_spritesheet_highlights.png" id="3_n6smy"]
 [ext_resource type="Script" path="res://cat/recolor.gd" id="3_s37f2"]
-[ext_resource type="Theme" uid="uid://bsupviace6ypy" path="res://ui_theme.tres" id="5_n73wd"]
+[ext_resource type="Theme" uid="uid://bsupviace6ypy" path="res://UI/ui_theme.tres" id="5_n73wd"]
 [ext_resource type="FontFile" uid="uid://c83js3twejqpq" path="res://UI/GreatVibes-Regular.ttf" id="6_17qga"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_u3y08"]
@@ -16,7 +16,7 @@ font = ExtResource("6_17qga")
 font_size = 10
 shadow_color = Color(0, 0, 0, 0.282353)
 
-[node name="cat" type="CharacterBody2D" node_paths=PackedStringArray("agitation_bar", "warning_lable")]
+[node name="cat" type="CharacterBody2D" node_paths=PackedStringArray("agitation_bar", "warning_lable") groups=["cat"]]
 motion_mode = 1
 script = ExtResource("1_y7ae7")
 agitation_bar = NodePath("Control/ProgressBar")

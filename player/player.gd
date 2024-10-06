@@ -57,7 +57,7 @@ func collider_handle(collider: KinematicCollision2D) -> void:
 func start_jump() -> void:
     is_jumping = true
     jump_direction = Vector2( Input.get_axis("action_left", "action_right"), Input.get_axis("action_up", "action_down")).normalized()
-    collision_mask = 2
+    collision_mask = 6
     jump_timer = 0.0
 
 
@@ -72,6 +72,6 @@ func do_jump(delta: float) -> void:
     jump_timer += delta
     if jump_timer > JUMP_TIME:
         is_jumping = false
-        collision_mask = 1
+        collision_mask = 5
         main_sprite.position = Vector2.ZERO
         return

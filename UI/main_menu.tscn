@@ -1,0 +1,106 @@
+[gd_scene load_steps=8 format=3 uid="uid://bg1mwv1kyo2pg"]
+
+[ext_resource type="Theme" uid="uid://bsupviace6ypy" path="res://UI/ui_theme.tres" id="1_1uo5v"]
+[ext_resource type="Script" path="res://UI/main_menu.gd" id="2_o58l2"]
+[ext_resource type="LabelSettings" uid="uid://cgt270gfn05ur" path="res://UI/lable_settings.tres" id="3_84t37"]
+[ext_resource type="FontFile" uid="uid://c83js3twejqpq" path="res://UI/GreatVibes-Regular.ttf" id="4_affej"]
+[ext_resource type="PackedScene" uid="uid://bdskqdoova2l7" path="res://world/world.tscn" id="5_bnhlf"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_aphf6"]
+font = ExtResource("4_affej")
+font_size = 36
+font_color = Color(1, 0.966, 0.83, 1)
+shadow_color = Color(0, 0, 0, 0.623529)
+
+[sub_resource type="LabelSettings" id="LabelSettings_4s6ul"]
+font = ExtResource("4_affej")
+font_size = 48
+font_color = Color(1, 0.966, 0.83, 1)
+shadow_color = Color(0, 0, 0, 0.623529)
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_1uo5v")
+script = ExtResource("2_o58l2")
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_1uo5v")
+
+[node name="PanelContainer" type="PanelContainer" parent="CenterContainer"]
+custom_minimum_size = Vector2(600, 400)
+layout_mode = 2
+theme = ExtResource("1_1uo5v")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/PanelContainer"]
+layout_mode = 2
+theme = ExtResource("1_1uo5v")
+
+[node name="Label" type="Label" parent="CenterContainer/PanelContainer/VBoxContainer"]
+layout_mode = 2
+text = "Herding these things"
+label_settings = ExtResource("3_84t37")
+horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="CenterContainer/PanelContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_1uo5v")
+
+[node name="Label2" type="Label" parent="CenterContainer/PanelContainer/VBoxContainer"]
+layout_mode = 2
+text = "Ludum dare 56: Tiny creatures"
+label_settings = SubResource("LabelSettings_aphf6")
+horizontal_alignment = 1
+
+[node name="Label3" type="Label" parent="CenterContainer/PanelContainer/VBoxContainer"]
+layout_mode = 2
+text = "Welcome to this small advneture"
+label_settings = SubResource("LabelSettings_4s6ul")
+horizontal_alignment = 1
+
+[node name="Label4" type="Label" parent="CenterContainer/PanelContainer/VBoxContainer"]
+layout_mode = 2
+text = "Credits: Controls: wsad + ctrl + space"
+label_settings = SubResource("LabelSettings_aphf6")
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/PanelContainer/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Button" type="Button" parent="CenterContainer/PanelContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 2
+size_flags_vertical = 0
+focus_mode = 0
+theme = ExtResource("1_1uo5v")
+text = "Controls"
+
+[node name="Button2" type="Button" parent="CenterContainer/PanelContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+focus_mode = 0
+theme = ExtResource("1_1uo5v")
+text = "Start"
+
+[node name="Button3" type="Button" parent="CenterContainer/PanelContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 10
+focus_mode = 0
+theme = ExtResource("1_1uo5v")
+text = "Quit"
+
+[node name="world" parent="." instance=ExtResource("5_bnhlf")]
+position = Vector2(-1200, -300)
+
+[connection signal="button_up" from="CenterContainer/PanelContainer/VBoxContainer/HBoxContainer/Button2" to="." method="start"]
+[connection signal="button_up" from="CenterContainer/PanelContainer/VBoxContainer/HBoxContainer/Button3" to="." method="quit"]
