@@ -1,7 +1,7 @@
 extends CharacterBody2D
 class_name Cat
 
-const SPEED = 400.0
+const SPEED = 350.0
 const JOIN_DISTANCE_THRESHOLD = 100.0  # Distance threshold for joining
 const join_point_radius: float = 50.0
 const SIT_TIME = 3.0  # Time to sit before going back to sit state

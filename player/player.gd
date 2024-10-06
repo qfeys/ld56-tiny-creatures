@@ -1,14 +1,29 @@
 extends CharacterBody2D
 
+@export var main_sprite: Sprite2D
+@export var ground_shadow: Sprite2D
 
 const SPEED = 200.0
-const JUMP_VELOCITY = -400.0
+const JUMP_VELOCITY = 200.0
 const ACCELERATION = 1000.0
+const JUMP_TIME = 0.5
+const JUMP_HEIGHT = 32.0
 
 var is_crawling: bool = false
-
+var is_jumping: bool = false
+var jump_timer: float = 0.0
+var jump_start: Vector2
+var jump_direction: Vector2
 
 func _physics_process(delta):
+
+    if is_jumping:
+        do_jump(delta)
+        return
+    if Input.is_action_just_pressed("action_jump"):
+        start_jump()
+        do_jump(delta)
+        return
 
     if( Input.is_action_pressed("action_crawl")):
         is_crawling = true
@@ -37,3 +52,25 @@ func collider_handle(collider: KinematicCollision2D) -> void:
     if obj.is_class("CharacterBody2D"):
         var cat: Cat = obj
         cat.player = self
+
+func start_jump() -> void:
+    is_jumping = true
+    jump_direction = Vector2( Input.get_axis("action_left", "action_right"), Input.get_axis("action_up", "action_down")).normalized()
+    collision_mask = 2
+    jump_timer = 0.0
+
+
+func do_jump(delta: float) -> void:
+    velocity = jump_direction * JUMP_VELOCITY
+    move_and_collide(velocity * delta)
+
+    var jump_fraction = jump_timer / JUMP_TIME # goes from 0 to 1
+    var y_offset = 4 * jump_fraction * (jump_fraction - 1)
+    main_sprite.position = Vector2(0, y_offset * JUMP_HEIGHT)
+
+    jump_timer += delta
+    if jump_timer > JUMP_TIME:
+        is_jumping = false
+        collision_mask = 1
+        main_sprite.position = Vector2.ZERO
+        return
